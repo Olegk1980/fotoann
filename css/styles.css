@@ -1,0 +1,76 @@
+@font-face {
+    font-family: HouseMD;
+    src: url(../fonts/HouseMD.ttf);
+}
+
+body {
+    padding-top: 70px;
+}
+
+#tiles {
+    -webkit-column-count: 4;
+    -webkit-column-gap: 6px;
+    -moz-column-count: 4;
+    -moz-column-gap: 6px;
+    column-count: 4;
+    column-gap: 6px;
+    text-align: justify;
+}
+
+#tiles li {
+    width: 100%;
+    margin-bottom: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dedede;
+    padding: 4px;
+    overflow: hidden;
+}
+
+#tiles li a img,
+#tiles li a {
+    width: inherit;
+}
+
+#tiles li a span {
+    display: block;
+}
+
+
+/* =Responsive Sidebar Grid
+-------------------------------------------------------------- */
+
+.sidebar-right {
+    float: right !important;
+    margin-bottom: 2.083%;
+    padding-top: 0;
+    margin-left: 0 !important;
+    margin-right: 2.564102564102564% !important;
+}
+
+.content-right {
+    float: right !important;
+    margin-bottom: 2.083%;
+    padding-top: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+
+/* =Links
+-------------------------------------------------------------- */
+
+a {
+    color: #524D4D;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #8C7E7E;
+    text-decoration: underline;
+}
