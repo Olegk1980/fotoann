@@ -40,15 +40,12 @@ function RequestAlbum(param) {
         //  console.log(i, okAlbum.photos[i].pic180min);
         let list = document.createElement('li');
         let link = document.createElement('a');
-        link.setAttribute('href', '#');
         link.setAttribute('class', 'lightbox');
-        //link.setAttribute('class', 'thumbnail');
-        link.setAttribute('data-image-id', '');
-        link.setAttribute('data-toggle', 'modal');
-        link.setAttribute('data-image', okAlbum.photos[i].pic1024max);
-        link.setAttribute('data-target', '#image-gallery');
+        link.setAttribute('href', okAlbum.photos[i].pic1024max);
+        link.setAttribute('data-toggle', 'lightbox');
+        link.setAttribute('data-gallery', 'gallery');
+        link.setAttribute('data-type', 'image');
         let img = new Image();
-        //img.setAttribute('class', 'img-responsive')
         img.src = okAlbum.photos[i].pic180min;
         link.appendChild(img);
         list.appendChild(link);
@@ -56,62 +53,10 @@ function RequestAlbum(param) {
       }
     })
     .then(function GalleryFoto() {
-
-      loadGallery(true, 'a.lightbox');
-
-      //This function disables buttons when needed
-      function disableButtons(counter_max, counter_current) {
-        $('#show-previous-image, #show-next-image').show();
-        if (counter_max == counter_current) {
-          $('#show-next-image').hide();
-        } else if (counter_current == 1) {
-          $('#show-previous-image').hide();
-        }
-      }
-
-      /**
-       *
-       * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
-       * @param setClickAttr  Sets the attribute for the click handler.
-       */
-
-      function loadGallery(setIDs, setClickAttr) {
-        var current_image,
-          selector,
-          counter = 0;
-
-        $('#show-next-image, #show-previous-image').click(function() {
-          if ($(this).attr('id') == 'show-previous-image') {
-            current_image--;
-          } else {
-            current_image++;
-          }
-
-          selector = $('[data-image-id="' + current_image + '"]');
-          updateGallery(selector);
-        });
-
-        function updateGallery(selector) {
-          var $sel = selector;
-          current_image = $sel.data('image-id');
-          //$('#image-gallery-caption').text($sel.data('caption'));
-          //$('#image-gallery-title').text($sel.data('title'));
-          $('#image-gallery-caption').text('test');
-          $('#image-gallery-title').text('title');
-          $('#image-gallery-image').attr('src', $sel.data('image'));
-          disableButtons(counter, $sel.data('image-id'));
-        }
-
-        if (setIDs == true) {
-          $('[data-image-id]').each(function() {
-            counter++;
-            $(this).attr('data-image-id', counter);
-          });
-        }
-        $(setClickAttr).on('click', function() {
-          updateGallery($(this));
-        });
-      }
+      $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({ wrapping: false });
+      });
     })
     .catch(function genericError(error) {
       alert(error); // Error: Not Found
