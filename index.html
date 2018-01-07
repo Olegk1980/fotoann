@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="description" content="Портфолио фотографа Анны Князевой, Кемерово, Кемеровская область, семейный фотограф, пейзажная фотография, портреты.">
+    <meta name="description" content="Фотограф Анна Князева, Кемерово, семейный фотограф, пейзажная и портретная фотография">
     <meta content="website" property="og:type">
     <meta content="Anna Knyazeva Photography" property="og:site_name">
     <meta content="fotoann" property="og:title">
-    <meta content="Портфолио фотографа Анны Князевой, Кемерово, Кемеровская область, семейный фотограф, пейзажная фотография, портреты." property="og:description">
+    <meta content="Фотограф Анна Князева, Кемерово, семейный фотограф, пейзажная и портретная фотография" property="og:description">
     <meta content="http://www.fotoann.tk/" property="og:url">
     <meta property="og:image" content="/favicon.png" />
     <link href="http://fotoann.tk/" rel="canonical">
@@ -21,13 +21,6 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="/favicon.svg" rel="mask-icon" color="#262626">
 
-    <script src="js/fotoann.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        //<![CDATA[        
-        window.onload = function() {
-                CreateParamLink(1);
-            } //]]>
-    </script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -67,23 +60,63 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="span12">
-                <ul id="tiles">
-
-                </ul>
+    <div class="container gallery-container">
+        <div class="tz-gallery">
+            <ul id="tiles">
+            </ul>
+        </div>
+    </div>
+    <!--
+    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="image-gallery-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <img id="image-gallery-image" class="img-responsive" src="">
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" id="show-previous-image">Previous</button>
+                    </div>
+                    <div class="col-md-8 text-justify" id="image-gallery-caption">
+                        This text will be overwritten by jQuery
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" id="show-next-image" class="btn btn-default">Next</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-
+-->
+    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <img class="img-responsive" id="image-gallery-image" src="">
+                    <a id="show-previous-image" class="carousel-control left" href="#show-previous-image" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a id="show-next-image" class="carousel-control right" href="#show-next-image" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+                <div class="col-md-12 description">
+                    <h4>Фотогалерея избранных работ</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/fotoann.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        CreateParamLink(1);
+    </script>
 </body>
 
 </html>
