@@ -131,6 +131,7 @@ body {
     background-image: none;
     margin-top: 10%;
     width: 5%;
+    border: none;
 }
 
 .modal-open .modal {
@@ -215,19 +216,6 @@ body {
     -webkit-transform: translate3d(0, -100px, 0);
     transform: translate3d(0, -100px, 0);
     opacity: 1;
-}
-
-@media (min-width: 768px) {
-    .modal-dialog {
-        width: 55%;
-        margin: 50 auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .modal-content {
-        height: 250px;
-    }
 }
 
 
