@@ -125,7 +125,7 @@ body {
 
 .modal-header {
     padding: 0px;
-    border-bottom: 0px;
+    border-bottom: none;
 }
 
 button.close {
