@@ -55,7 +55,10 @@ function RequestAlbum(param) {
     .then(function GalleryFoto() {
       $(document).on("click", '[data-toggle="lightbox"]', function(event) {
         event.preventDefault();
-        $(this).ekkoLightbox({ wrapping: false });
+        $(this).ekkoLightbox({
+          wrapping: false,
+          alwaysShowClose: true
+        });
       });
     })
     .catch(function genericError(error) {
