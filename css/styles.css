@@ -140,8 +140,8 @@ button.close {
     opacity: 1;
     color: #fff;
     z-index: 999;
-    right: -20px;
-    top: -20px;
+    right: -25px;
+    top: -22px;
     border-radius: 50%;
     font-size: 30px;
     font-weight: lighter;
