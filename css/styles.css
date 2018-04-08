@@ -128,33 +128,34 @@ body {
     border-bottom: none;
 }
 
+.modal-title {
+    display: none;
+}
+
 button.close {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     background-color: #000;
     opacity: 1;
     color: #fff;
     z-index: 999;
-    right: -12px;
-    top: -12px;
+    right: -20px;
+    top: -20px;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 30px;
+    font-weight: lighter;
+    text-shadow: none;
     border: 2px solid #fff;
     line-height: 25px;
     -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
 }
 
-button.close:focus {
+button.close:focus,
+button.close:hover {
+    color: #777;
     outline: none;
-}
-
-button.close span {
-    position: relative;
-    top: -3px;
-    font-weight: lighter;
-    text-shadow: none;
 }
 
 
