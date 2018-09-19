@@ -1,0 +1,289 @@
+    @font-face {
+        font-family: HouseMD;
+        src: url(fonts/HouseMD.ttf);
+    }
+    
+    body {
+        padding-top: 70px;
+    }
+    /*---------------------------Расположение сетки в стиле кладки---------------*/
+    
+    #tiles {
+        -webkit-column-count: 5;
+        -webkit-column-gap: 6px;
+        -moz-column-count: 5;
+        -moz-column-gap: 6px;
+        column-count: 5;
+        column-gap: 6px;
+        text-align: justify;
+    }
+    
+    #tiles li {
+        width: 100%;
+        margin-bottom: 3px;
+        background-color: #ffffff;
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        padding: 4px;
+        overflow: hidden;
+    }
+    
+    #tiles li a img,
+    #tiles li a {
+        width: inherit;
+    }
+    
+    #tiles li a span {
+        display: block;
+    }
+    /*-------------------эффекты галереи-----------------------------*/
+    /*.tz-gallery>ul>li*/
+    
+    .card-columns>.card {
+        display: inline-flex;
+        list-style: outside none none;
+    }
+    /*.tz-gallery>ul>li*/
+    
+    .card a.lightbox {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        float: left;
+    }
+    /*.tz-gallery>ul>li*/
+    
+    .card a.lightbox>img {
+        -webkit-transition: -webkit-transform 0.15s ease 0s;
+        -moz-transition: -moz-transform 0.15s ease 0s;
+        -o-transition: -o-transform 0.15s ease 0s;
+        transition: transform 0.15s ease 0s;
+        -webkit-transform: scale3d(1, 1, 1);
+        /* Saf3.1+, Chrome */
+        -moz-transform: scale3d(1, 1, 1);
+        /* FF3.5+ */
+        -ms-transform: scale3d(1, 1, 1);
+        /* IE9 */
+        -o-transform: scale3d(1, 1, 1);
+        /* Opera 10.5 */
+        transform: scale3d(1, 1, 1);
+        height: 100%;
+        width: 100%;
+    }
+    /*.tz-gallery>ul>li*/
+    
+    .card a.lightbox:hover>img {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        /* Saf3.1+, Chrome */
+        -moz-transform: scale3d(1.1, 1.1, 1.1);
+        /* FF3.5+ */
+        -ms-transform: scale3d(1.1, 1.1, 1.1);
+        /* IE9 */
+        -o-transform: scale3d(1.1, 1.1, 1.1);
+        /* Opera 10.5 */
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    /*.tz-gallery*/
+    
+    .card a.lightbox:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -13px;
+        margin-left: -13px;
+        opacity: 0;
+        color: #fff;
+        font-size: 26px;
+        font-family: 'Font Awesome\ 5 Free';
+        content: '\f302';
+        pointer-events: none;
+        z-index: 9000;
+        transition: 0.4s;
+    }
+    
+    .card a.lightbox:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background-color: rgba(46, 132, 206, 0.7);
+        content: '';
+        transition: 0.4s;
+    }
+    
+    .card .lightbox:hover:after,
+    .card .lightbox:hover:before {
+        opacity: 1;
+    }
+    /*--------------Кнопка lightbox выбранной фото------------------*/
+    
+    .modal-header {
+        padding: 0px;
+        border-bottom: none;
+    }
+    
+    .modal-title {
+        display: none;
+    }
+    
+    .modal-body {
+        padding: 0px;
+    }
+    
+    .modal-header .close {
+        padding: 10px 15px 15px 15px;
+        margin: 0px;
+        position: absolute;
+        right: -26px;
+        top: -27px;
+        color: #fff;
+        text-shadow: none;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        background-color: #000;
+        z-index: 999;
+    }
+    
+    .close:not(:disabled):not(.disabled):focus,
+    .close:not(:disabled):not(.disabled):hover {
+        opacity: 1;
+        color: #fff;
+        outline: none;
+    }
+    
+    .ekko-lightbox-nav-overlay a {
+        margin: 0px -30px;
+        padding: 0px 30px;
+        opacity: 0.2;
+        font-size: smaller;
+    }
+    
+    .ekko-lightbox-nav-overlay a span {
+        padding: 0px 7px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background-color: #000;
+    }
+    
+    .ekko-lightbox-nav-overlay a:first-child span {
+        text-align: left;
+        position: absolute;
+        left: -28px;
+    }
+    
+    .ekko-lightbox-nav-overlay a:last-child span {
+        text-align: right;
+        position: absolute;
+        right: -28px;
+    }
+    
+    .ekko-lightbox a:hover {
+        color: #fff;
+    }
+    /* =Responsive Sidebar Grid
+  -------------------------------------------------------------- 
+
+.sidebar-right {
+    float: right !important;
+    margin-bottom: 2.083%;
+    padding-top: 0;
+    margin-left: 0 !important;
+    margin-right: 2.564102564102564% !important;
+}
+
+.content-right {
+    float: right !important;
+    margin-bottom: 2.083%;
+    padding-top: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+*/
+    /* =Links
+  -------------------------------------------------------------- */
+    
+    a {
+        color: #524D4D;
+        font-weight: 400;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #8C7E7E;
+        text-decoration: underline;
+    }
+    /* =Responsive cards in card-columns
+  -------------------------------------------------------------- */
+    
+    @media (min-width: 300px) {
+        div.card-columns {
+            column-count: 3;
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        div.card-columns {
+            column-count: 4;
+        }
+    }
+    
+    @media (min-width: 3440px) {
+        div.card-columns {
+            column-count: 5;
+        }
+    }
+    /* back to top 
+-------------------------------------------------- */
+    
+    div#go-top {
+        position: fixed;
+        bottom: 0;
+        right: 10px;
+        z-index: 900;
+        display: none;
+    }
+    
+    div#go-top a {
+        display: block;
+        font-size: 4rem;
+        text-align: center;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    div#go-top a span i.fa-circle {
+        position: relative;
+    }
+    
+    div#go-top a span i.fa-circle i.fa-arrow-up {
+        position: absolute;
+        font-size: 3rem;
+        top: 8px;
+        left: 11px;
+    }
+    
+    div#go-top a span i.fa-circle i.fa-angle-double-up {
+        display: none;
+        position: absolute;
+        font-size: 3rem;
+        top: 8px;
+        left: 17px;
+    }
+    
+    div#go-top a:hover span i.fa-circle i.fa-arrow-up {
+        display: none;
+    }
+    
+    div#go-top a:hover span i.fa-circle i.fa-angle-double-up {
+        display: initial;
+    }

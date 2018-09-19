@@ -1,58 +1,82 @@
 'use strict';
 
-function CreateParamLink(numPage) {
-  let param;
-  switch (numPage) {
+function GetLink(pageNum) {
+  let album_id;
+  let page = {
+    index: '863420403159',
+    portfolio: '863420335063',
+    portfolio_wedding: '863420833495',
+    portfolio_famaly: '863420873943',
+    portfolio_child: '863420911575',
+    portfolio_portret: '863420898775'
+  };
+  switch (pageNum) {
     case 1:
-      param = 'aid=863420403159&application_key=CBAEGMAMEBABABABA&count=100&fields=photo.PIC180MIN%2Cphoto.PIC1024MAX&format=json&method=photos.getPhotos&sig=d1f865e8d4b7d51a0c73f42f60ffa531&access_token=tkn14fszGBpmxBiKNC32otYB2U02sW5j5o6LxlMlBMAdMdhuWBp1HEFm3sQ38g2ky5az3';
+      album_id = page.index;
       break;
-    case 4:
-      alert('В точку!');
+    case 2:
+      album_id = page.portfolio;
       break;
-    case 5:
-      alert('Перебор');
+    case 21:
+      album_id = page.portfolio_wedding;
+      break;
+    case 22:
+      album_id = page.portfolio_child;
+      break;
+    case 23:
+      album_id = page.portfolio_famaly;
+      break;
+    case 24:
+      album_id = GetLink(page.portfolio_portret);
       break;
     default:
-      alert('Я таких значений не знаю');
+      alert('Не удалось определить album_id');
   }
-  if (param != undefined) {
-    RequestAlbum(param)
+  if (album_id != undefined) {
+    let sig = 'aid=' + album_id + 'application_key=CBAEGMAMEBABABABAcount=100fields=photo.pic240min,photo.pic_max,photo.textformat=jsonmethod=photos.getPhotos175d4c4372d17fc982d31104b6c37686';
+    GetAlbum('https://api.ok.ru/fb.do' +
+      '?aid=' + album_id +
+      '&application_key=CBAEGMAMEBABABABA' +
+      '&count=100' +
+      '&fields=photo.pic240min%2Cphoto.pic_max%2Cphoto.text' +
+      '&format=json' +
+      '&method=photos.getPhotos' +
+      '&sig=' + md5(sig) +
+      '&access_token=tkn14fszGBpmxBiKNC32otYB2U02sW5j5o6LxlMlBMAdMdhuWBp1HEFm3sQ38g2ky5az3');
   }
-
+  return false;
 }
 
-function RequestAlbum(param) {
-  HttpGet('https://api.ok.ru/fb.do?' + param)
-    .then(JSON.parse,
-      function okError(error) {
-        if (error.code == 404) {
-          return {
-            name: "NoOK",
-            avatar_url: 'anon.png'
-          };
-        } else {
-          throw error;
-        }
+function GetAlbum(link) {
+  fetch(link)
+    .then(function(response) {
+      if (response.status >= 200 && response.status < 300) {
+        return response.json();
+      } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
       }
-    )
-    .then(function okShowFoto(okAlbum) {
-      for (var i in okAlbum.photos) {
-        //  console.log(i, okAlbum.photos[i].pic180min);
-        let list = document.createElement('li');
+    })
+    .then(function(album) {
+      for (var i in album.photos) {
+        let card = document.createElement('div');
+        card.setAttribute('class', 'card');
         let link = document.createElement('a');
         link.setAttribute('class', 'lightbox');
-        link.setAttribute('href', okAlbum.photos[i].pic1024max);
+        link.setAttribute('href', album.photos[i].pic_max);
         link.setAttribute('data-toggle', 'lightbox');
         link.setAttribute('data-gallery', 'gallery');
         link.setAttribute('data-type', 'image');
         let img = new Image();
-        img.src = okAlbum.photos[i].pic180min;
+        img.src = album.photos[i].pic240min;
+        img.alt = 'фотограф Анна +79132826264';
         link.appendChild(img);
-        list.appendChild(link);
-        document.getElementById('tiles').appendChild(list);
+        card.appendChild(link);
+        document.getElementById('photo-gallery').appendChild(card);
       }
     })
-    .then(function GalleryFoto() {
+    .then(function() {
       $(document).on("click", '[data-toggle="lightbox"]', function(event) {
         event.preventDefault();
         $(this).ekkoLightbox({
@@ -61,27 +85,34 @@ function RequestAlbum(param) {
         });
       });
     })
-    .catch(function genericError(error) {
-      alert(error); // Error: Not Found
+    .catch(function(err) {
+      console.log(err)
     });
 }
 
-function HttpGet(url) {
-  return new Promise(function(resolve, reject) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onload = function() {
-      if (this.status == 200) {
-        resolve(this.response);
-      } else {
-        var error = new Error(this.statusText);
-        error.code = this.status;
-        reject(error);
-      }
-    };
-    xhr.onerror = function() {
-      reject(new Error("Network Error"));
-    };
-    xhr.send();
-  });
-}
+//-----------------------------------------------------
+//Анимация перехода по якорю
+//-----------------------------------------------------
+$(document).on('click', 'a.scroll-smooth[href*="#"]', function(event) {
+  event.preventDefault();
+  $('html, body').animate({
+    scrollTop: $(($.attr(this, 'href')).match(/#.+/)[0]).offset().top
+  }, 500);
+});
+
+//-----------------------------------------------------
+// Back to top
+//-----------------------------------------------------
+var pxShow = 300; // height on which the button will show
+var fadeInTime = 400; // how slow/fast you want the button to show
+var fadeOutTime = 400; // how slow/fast you want the button to hide
+var scrollSpeed = 300; // how slow/fast you want the button to scroll to top. can be a value, 'slow', 'normal' or 'fast'
+
+// Show or hide the sticky footer button
+$(window).scroll(function() {
+  if ($(window).scrollTop() >= pxShow) {
+    $("#go-top").fadeIn(fadeInTime);
+  } else {
+    $("#go-top").fadeOut(fadeOutTime);
+  }
+});
