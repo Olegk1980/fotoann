@@ -133,16 +133,11 @@
     }
     
     .modal-header .close {
-        padding: 10px 15px 15px 15px;
-        margin: 0px;
         position: absolute;
-        right: -26px;
-        top: -27px;
+        right: -9px;
+        top: -16px;
         color: #fff;
         text-shadow: none;
-        border: 2px solid #fff;
-        border-radius: 50%;
-        background-color: #000;
         z-index: 999;
     }
     
@@ -153,34 +148,25 @@
         outline: none;
     }
     
+    .ekko-lightbox a:hover {
+        color: #fff;
+    }
+    
     .ekko-lightbox-nav-overlay a {
-        margin: 0px -30px;
-        padding: 0px 30px;
         opacity: 0.2;
         font-size: smaller;
     }
     
     .ekko-lightbox-nav-overlay a span {
-        padding: 0px 7px;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        background-color: #000;
+        padding: 0px 10px;
     }
     
     .ekko-lightbox-nav-overlay a:first-child span {
         text-align: left;
-        position: absolute;
-        left: -28px;
     }
     
     .ekko-lightbox-nav-overlay a:last-child span {
         text-align: right;
-        position: absolute;
-        right: -28px;
-    }
-    
-    .ekko-lightbox a:hover {
-        color: #fff;
     }
     /* =Responsive Sidebar Grid
   -------------------------------------------------------------- 
@@ -224,7 +210,7 @@ img {
     
     @media (min-width: 300px) {
         div.card-columns {
-            column-count: 3;
+            column-count: 4;
         }
     }
     
@@ -236,7 +222,7 @@ img {
     
     @media (min-width: 3440px) {
         div.card-columns {
-            column-count: 5;
+            column-count: 6;
         }
     }
     /* back to top 
@@ -261,29 +247,6 @@ img {
         transition: all 0.2s ease-in-out;
     }
     
-    div#go-top a span i.fa-circle {
-        position: relative;
-    }
-    
-    div#go-top a span i.fa-circle i.fa-arrow-up {
-        position: absolute;
-        font-size: 3rem;
-        top: 8px;
-        left: 11px;
-    }
-    
-    div#go-top a span i.fa-circle i.fa-angle-double-up {
-        display: none;
-        position: absolute;
-        font-size: 3rem;
-        top: 8px;
-        left: 17px;
-    }
-    
-    div#go-top a:hover span i.fa-circle i.fa-arrow-up {
-        display: none;
-    }
-    
-    div#go-top a:hover span i.fa-circle i.fa-angle-double-up {
-        display: initial;
+    div#go-top a span i.fa-angle-double-up {
+        font-size: 2rem;
     }
