@@ -27,7 +27,7 @@ function GetLink(pageNum) {
       album_id = page.portfolio_famaly;
       break;
     case 24:
-      album_id = GetLink(page.portfolio_portret);
+      album_id = page.portfolio_portret;
       break;
     default:
       alert('Не удалось определить album_id');
@@ -42,12 +42,12 @@ function GetLink(pageNum) {
       '&format=json' +
       '&method=photos.getPhotos' +
       '&sig=' + md5(sig) +
-      '&access_token=tkn14fszGBpmxBiKNC32otYB2U02sW5j5o6LxlMlBMAdMdhuWBp1HEFm3sQ38g2ky5az3');
+      '&access_token=tkn14fszGBpmxBiKNC32otYB2U02sW5j5o6LxlMlBMAdMdhuWBp1HEFm3sQ38g2ky5az3', pageNum);
   }
   return false;
 }
 
-function GetAlbum(link) {
+function GetAlbum(link, pageNum) {
   fetch(link)
     .then(function(response) {
       if (response.status >= 200 && response.status < 300) {
@@ -59,18 +59,44 @@ function GetAlbum(link) {
       }
     })
     .then(function(album) {
-      for (var i in album.photos) {
+      let pageName;
+      for (let i in album.photos) {
         let card = document.createElement('div');
-        card.setAttribute('class', 'card');
         let link = document.createElement('a');
-        link.setAttribute('class', 'lightbox');
-        link.setAttribute('href', album.photos[i].pic_max);
-        link.setAttribute('data-toggle', 'lightbox');
-        link.setAttribute('data-gallery', 'gallery');
-        link.setAttribute('data-type', 'image');
         let img = new Image();
-        img.src = album.photos[i].pic240min;
-        img.alt = 'фотограф Анна +79132826264';
+
+        card.setAttribute('class', 'card');
+        if (pageNum == 2) {
+          switch (parseInt(i)) {
+            case 0:
+              pageName = '/p-wedding';
+              break;
+            case 1:
+              pageName = '/p-children';
+              break;
+            case 2:
+              pageName = '/p-famaly';
+              break;
+            case 3:
+              pageName = '/p-portret';
+              break;
+            default:
+              pageName = '/index';
+          }
+          link.setAttribute('href', pageName);
+
+          img.src = album.photos[i].pic_max;
+          img.alt = 'фотограф Анна +79132826264';
+        } else {
+          link.setAttribute('class', 'lightbox');
+          link.setAttribute('href', album.photos[i].pic_max);
+          link.setAttribute('data-toggle', 'lightbox');
+          link.setAttribute('data-gallery', 'gallery');
+          link.setAttribute('data-type', 'image');
+
+          img.src = album.photos[i].pic240min;
+          img.alt = 'фотограф Анна +79132826264';
+        }
         link.appendChild(img);
         card.appendChild(link);
         document.getElementById('photo-gallery').appendChild(card);

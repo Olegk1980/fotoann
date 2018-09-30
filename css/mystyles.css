@@ -36,6 +36,75 @@
     #tiles li a span {
         display: block;
     }
+    /*-------------------галерея аккардион-----------------------------*/
+    
+    div.gallery-wrap {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 88vh;
+    }
+    
+    div.card {
+        flex: 1;
+        height: 100%;
+        transition: flex 0.8s ease;
+    }
+    
+    div.card:hover {
+        flex: 7;
+    }
+    
+    div.card a {
+        width: 100%;
+        height: 100%;
+    }
+    
+    div.card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /*-------------------футер-----------------------------*/
+    
+    footer .fa-vk {
+        font-size: 1.33333em;
+        color: #375474;
+    }
+    
+    footer .fa-odnoklassniki-square {
+        font-size: 1.33333em;
+        color: #ee8208;
+    }
+    
+    footer .fa-instagram {
+        font-size: 1.33333em;
+        background: -webkit-radial-gradient(30% 107%, circle, #FEDA77 10%, #F58529 25%, #DD2A7B 45%, #8134AF 60%, #515BD4 90%);
+        /* Safari 5.1-6.0 */
+        background: -o-radial-gradient(30% 107%, circle, #FEDA77 10%, #F58529 25%, #DD2A7B 45%, #8134AF 60%, #515BD4 90%);
+        /* Opera 11.6-12.0 */
+        background: -moz-radial-gradient(30% 107%, circle, #FEDA77 10%, #F58529 25%, #DD2A7B 45%, #8134AF 60%, #515BD4 90%);
+        /* Firefox 3.6-15 */
+        background: radial-gradient(circle at 30% 107%, #FEDA77 10%, #F58529 25%, #DD2A7B 45%, #8134AF 60%, #515BD4 90%);
+        /* Стандартный синтаксис */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    footer .fa-whatsapp-square {
+        font-size: 1.33333em;
+        color: #25d366;
+    }
+    
+    footer .fa-viber {
+        font-size: 1.33333em;
+        color: #8f5db7;
+    }
+    
+    footer .fa-phone-square {
+        font-size: 1.33333em;
+    }
     /*-------------------эффекты галереи-----------------------------*/
     /*.tz-gallery>ul>li*/
     
