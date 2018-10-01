@@ -2,6 +2,7 @@
 
 function GetLink(pageNum) {
   let album_id;
+  let salt = 's175d4c4372d17fc982d31104b6c37686';
   let page = {
     index: '863420403159',
     portfolio: '863420335063',
@@ -10,6 +11,7 @@ function GetLink(pageNum) {
     portfolio_child: '863420911575',
     portfolio_portret: '863420898775'
   };
+
   switch (pageNum) {
     case 1:
       album_id = page.index;
@@ -33,7 +35,7 @@ function GetLink(pageNum) {
       alert('Не удалось определить album_id');
   }
   if (album_id != undefined) {
-    let sig = 'aid=' + album_id + 'application_key=CBAEGMAMEBABABABAcount=100fields=photo.pic240min,photo.pic_max,photo.textformat=jsonmethod=photos.getPhotos175d4c4372d17fc982d31104b6c37686';
+    let sig = 'aid=' + album_id + 'application_key=CBAEGMAMEBABABABAcount=100fields=photo.pic240min,photo.pic_max,photo.textformat=jsonmethod=photos.getPhoto' + salt;
     GetAlbum('https://api.ok.ru/fb.do' +
       '?aid=' + album_id +
       '&application_key=CBAEGMAMEBABABABA' +
@@ -59,47 +61,33 @@ function GetAlbum(link, pageNum) {
       }
     })
     .then(function(album) {
-      let pageName;
-      for (let i in album.photos) {
-        let card = document.createElement('div');
-        let link = document.createElement('a');
-        let img = new Image();
-
-        card.setAttribute('class', 'card');
-        if (pageNum == 2) {
-          switch (parseInt(i)) {
-            case 0:
-              pageName = '/p-wedding';
-              break;
-            case 1:
-              pageName = '/p-children';
-              break;
-            case 2:
-              pageName = '/p-famaly';
-              break;
-            case 3:
-              pageName = '/p-portret';
-              break;
-            default:
-              pageName = '/index';
-          }
-          link.setAttribute('href', pageName);
-
-          img.src = album.photos[i].pic_max;
-          img.alt = 'фотограф Анна +79132826264';
-        } else {
-          link.setAttribute('class', 'lightbox');
-          link.setAttribute('href', album.photos[i].pic_max);
-          link.setAttribute('data-toggle', 'lightbox');
-          link.setAttribute('data-gallery', 'gallery');
-          link.setAttribute('data-type', 'image');
-
-          img.src = album.photos[i].pic240min;
-          img.alt = 'фотограф Анна +79132826264';
-        }
-        link.appendChild(img);
-        card.appendChild(link);
-        document.getElementById('photo-gallery').appendChild(card);
+      switch (parseInt(pageNum)) {
+        case 1:
+          GenerationIndex(album);
+          break;
+        case 2:
+          GenerationPortfolio(album);
+          break;
+        case 21:
+          GenerationPortfolioSubPage(album);
+          break;
+        case 22:
+          GenerationPortfolioSubPage(album);
+          break;
+        case 23:
+          GenerationPortfolioSubPage(album);
+          break;
+        case 24:
+          GenerationPortfolioSubPage(album);
+          break;
+        case 3:
+          GenerationReviews(album);
+          break;
+        case 4:
+          GenerationEvents(album);
+          break;
+        default:
+          GenerationIndex(album);
       }
     })
     .then(function() {
@@ -114,6 +102,98 @@ function GetAlbum(link, pageNum) {
     .catch(function(err) {
       console.log(err)
     });
+}
+
+function GenerationIndex(album) {
+  for (let i in album.photos) {
+    let card = document.createElement('div');
+    let link = document.createElement('a');
+    let img = new Image();
+
+    card.setAttribute('class', 'card');
+
+    link.setAttribute('class', 'lightbox');
+    link.setAttribute('href', album.photos[i].pic_max);
+    link.setAttribute('data-toggle', 'lightbox');
+    link.setAttribute('data-gallery', 'gallery');
+    link.setAttribute('data-type', 'image');
+
+    img.src = album.photos[i].pic240min;
+    img.alt = 'фотограф Анна +79132826264';
+
+    link.appendChild(img);
+
+    card.appendChild(link);
+
+    document.getElementById('photo-gallery').appendChild(card);
+  }
+}
+
+function GenerationPortfolio(album) {
+  let pageName;
+  for (let i in album.photos) {
+    let card = document.createElement('div');
+    let link = document.createElement('a');
+    let img = new Image();
+    switch (parseInt(i)) {
+      case 0:
+        pageName = '/p-wedding';
+        break;
+      case 1:
+        pageName = '/p-children';
+        break;
+      case 2:
+        pageName = '/p-famaly';
+        break;
+      case 3:
+        pageName = '/p-portret';
+        break;
+      default:
+        pageName = '/';
+    }
+    card.setAttribute('class', 'card');
+
+    link.setAttribute('href', pageName);
+
+    img.src = album.photos[i].pic_max;
+    img.alt = 'фотограф Анна +79132826264';
+
+    link.appendChild(img);
+
+    card.appendChild(link);
+
+    document.getElementById('photo-gallery').appendChild(card);
+  }
+}
+
+function GenerationPortfolioSubPage(album) {
+  let totalCount = album.totalCount - 2;
+  let numEvent = 4;
+  let flag = false;
+  let row;
+  for (let i in album.photos) {
+    let card = document.createElement('div');
+    let img = new Image();
+
+    img.src = album.photos[i].pic_max;
+    img.alt = 'фотограф Анна +79132826264';
+
+    card.appendChild(img);
+
+    if ((((++i) % numEvent) == 0 && i <= totalCount) || flag) {
+      flag = !flag;
+      if (flag) {
+        row = document.createElement('div');
+      }
+      row.setAttribute('class', 'row no-gutters');
+      card.setAttribute('class', 'card col-md-6 my-4');
+      row.appendChild(card);
+      document.getElementById('photo-gallery').appendChild(row);
+    } else {
+      card.setAttribute('class', 'card');
+      document.getElementById('photo-gallery').appendChild(card);
+    }
+  }
 }
 
 //-----------------------------------------------------
