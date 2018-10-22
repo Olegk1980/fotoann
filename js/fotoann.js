@@ -90,15 +90,6 @@ function GetAlbum(link, pageNum) {
           GenerationIndex(album);
       }
     })
-    .then(function() {
-      $(document).on("click", '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox({
-          wrapping: false,
-          alwaysShowClose: true
-        });
-      });
-    })
     .catch(function(err) {
       console.log(err)
     });
@@ -111,6 +102,7 @@ function GenerationIndex(album) {
     let img = new Image();
 
     card.setAttribute('class', 'card');
+    card.setAttribute('style', 'display: none;');
 
     link.setAttribute('class', 'lightbox');
     link.setAttribute('href', album.photos[i].pic_max);
@@ -118,6 +110,7 @@ function GenerationIndex(album) {
     link.setAttribute('data-gallery', 'gallery');
     link.setAttribute('data-type', 'image');
 
+    img.setAttribute('class', 'animated flipInY');
     img.src = album.photos[i].pic240min;
     img.alt = 'фотограф Анна +79132826264';
 
@@ -127,6 +120,17 @@ function GenerationIndex(album) {
 
     document.getElementById('photo-gallery').appendChild(card);
   }
+  //$('img.animated').on('load', function(elem) {
+  //  $(elem.delegateTarget.parentNode.parentNode).css('display', '');
+  //});
+
+  $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox({
+      wrapping: false,
+      alwaysShowClose: true
+    });
+  });
 }
 
 function GenerationPortfolio(album) {
@@ -197,6 +201,15 @@ function GenerationPortfolioSubPage(album) {
 }
 
 //-----------------------------------------------------
+//Анимация галереи на первой странице
+//-----------------------------------------------------
+$(window).on('load', function() {
+  if (location.pathname == '/' || location.pathname == '/index') {
+    $('div.card').css('display', '');
+  }
+});
+
+//-----------------------------------------------------
 //Анимация перехода по якорю
 //-----------------------------------------------------
 $(document).on('click', 'a.scroll-smooth[href*="#"]', function(event) {
@@ -222,3 +235,7 @@ $(window).scroll(function() {
     $("#go-top").fadeOut(fadeOutTime);
   }
 });
+//--------------------------------------------------------
+//  Установка копирайта
+//--------------------------------------------------------
+document.getElementById('tm').innerHTML = '&copy;2018 - ' + new Date().getFullYear() + ' Copyright: <a href="https://olegknyazev.ml/">Oleg Knyazev</a>'

@@ -187,7 +187,7 @@
     .card .lightbox:hover:before {
         opacity: 1;
     }
-    /*--------------Кнопка lightbox выбранной фото------------------*/
+    /*--------------Кнопки lightbox выбранной фото------------------*/
     
     .modal-header {
         padding: 0px;
@@ -204,8 +204,9 @@
     
     .modal-header .close {
         position: absolute;
-        right: -9px;
-        top: -16px;
+        font-size: 2rem;
+        right: 0rem;
+        top: -2rem;
         color: #fff;
         text-shadow: none;
         z-index: 999;
@@ -224,7 +225,7 @@
     
     .ekko-lightbox-nav-overlay a {
         opacity: 0.2;
-        font-size: smaller;
+        /*font-size: smaller;*/
     }
     
     .ekko-lightbox-nav-overlay a span {
