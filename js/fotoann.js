@@ -166,12 +166,12 @@ function GenerationPortfolio(album) {
 
     card.appendChild(link);
 
-    document.getElementById('photo-gallery').appendChild(card);
+    document.getElementById('portfolio').appendChild(card);
   }
 }
 
 function GenerationPortfolioSubPage(album) {
-  let totalCount = album.totalCount - 2;
+  //  let totalCount = album.totalCount - 2;
   let numEvent = 4;
   let flag = false;
   let row;
@@ -184,17 +184,17 @@ function GenerationPortfolioSubPage(album) {
 
     card.appendChild(img);
 
-    if ((((++i) % numEvent) == 0 && i <= totalCount) || flag) {
+    if ((((++i) % numEvent) == 0) || flag) {
       flag = !flag;
       if (flag) {
         row = document.createElement('div');
       }
       row.setAttribute('class', 'row no-gutters');
-      card.setAttribute('class', 'card col-md-6 my-4');
+      card.setAttribute('class', 'card col-md-6 mb-3');
       row.appendChild(card);
       document.getElementById('photo-gallery').appendChild(row);
     } else {
-      card.setAttribute('class', 'card');
+      card.setAttribute('class', 'card mb-3');
       document.getElementById('photo-gallery').appendChild(card);
     }
   }

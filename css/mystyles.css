@@ -45,24 +45,30 @@
         height: 88vh;
     }
     
-    div.card {
+    div.gallery-wrap div.card {
         flex: 1;
         height: 100%;
         transition: flex 0.8s ease;
     }
     
-    div.card:hover {
+    div.gallery-wrap div.card:hover {
         flex: 7;
     }
     
-    div.card a {
+    div.gallery-wrap div.card a {
         width: 100%;
         height: 100%;
     }
     
-    div.card img {
+    div.gallery-wrap div.card img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+    }
+    /*-------------------галерея подстраниц портфолио------*/
+    
+    #photo-gallery div.card img {
+        max-width: 100%;
         object-fit: cover;
     }
     /*-------------------футер-----------------------------*/
