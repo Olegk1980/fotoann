@@ -101,7 +101,7 @@ function GenerationIndex(album) {
     let link = document.createElement('a');
     let img = new Image();
 
-    card.setAttribute('class', 'card');
+    card.setAttribute('class', 'card animated flipInY');
     card.setAttribute('style', 'display: none;');
 
     link.setAttribute('class', 'lightbox');
@@ -110,7 +110,6 @@ function GenerationIndex(album) {
     link.setAttribute('data-gallery', 'gallery');
     link.setAttribute('data-type', 'image');
 
-    img.setAttribute('class', 'animated flipInY');
     img.src = album.photos[i].pic240min;
     img.alt = 'фотограф Анна +79132826264';
 
@@ -123,7 +122,6 @@ function GenerationIndex(album) {
   //$('img.animated').on('load', function(elem) {
   //  $(elem.delegateTarget.parentNode.parentNode).css('display', '');
   //});
-
   $(document).on("click", '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox({
@@ -134,31 +132,31 @@ function GenerationIndex(album) {
 }
 
 function GenerationPortfolio(album) {
-  let pageName;
   for (let i in album.photos) {
     let card = document.createElement('div');
     let link = document.createElement('a');
     let img = new Image();
     switch (parseInt(i)) {
       case 0:
-        pageName = '/p-wedding';
+        card.setAttribute('class', 'card wedding');
+        link.setAttribute('href', '/p-wedding');
         break;
       case 1:
-        pageName = '/p-children';
+        card.setAttribute('class', 'card children');
+        link.setAttribute('href', '/p-children');
         break;
       case 2:
-        pageName = '/p-famaly';
+        card.setAttribute('class', 'card famaly');
+        link.setAttribute('href', '/p-famaly');
         break;
       case 3:
-        pageName = '/p-portret';
+        card.setAttribute('class', 'card portret');
+        link.setAttribute('href', '/p-portret');
         break;
       default:
-        pageName = '/';
+        card.setAttribute('class', 'card');
+        link.setAttribute('href', '/');
     }
-    card.setAttribute('class', 'card');
-
-    link.setAttribute('href', pageName);
-
     img.src = album.photos[i].pic_max;
     img.alt = 'фотограф Анна +79132826264';
 
@@ -204,7 +202,7 @@ function GenerationPortfolioSubPage(album) {
 //Анимация галереи на первой странице
 //-----------------------------------------------------
 $(window).on('load', function() {
-  if (location.pathname == '/' || location.pathname == '/index') {
+  if (new RegExp("\/$|\/index").test(location.pathname)) {
     $('div.card').css('display', '');
   }
 });

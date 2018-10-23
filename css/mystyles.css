@@ -55,6 +55,36 @@
         flex: 7;
     }
     
+    div.gallery-wrap div.card:hover:after {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        color: #fff;
+        font-size: 26px;
+        text-shadow: 2px 0 1px #000, 0 2px 1px #000, -2px 0 1px #000, 0 -2px 1px #000;
+        margin-top: -13px;
+    }
+    
+    div.gallery-wrap div.wedding:hover:after {
+        content: 'Сваебная фотография';
+        margin-left: -155px;
+    }
+    
+    div.gallery-wrap div.children:hover:after {
+        content: 'Детская фотография';
+        margin-left: -100px;
+    }
+    
+    div.gallery-wrap div.famaly:hover:after {
+        content: 'Семейная фотография';
+        margin-left: -155px;
+    }
+    
+    div.gallery-wrap div.portret:hover:after {
+        content: 'Портретная фотография';
+        margin-left: -155px;
+    }
+    
     div.gallery-wrap div.card a {
         width: 100%;
         height: 100%;
@@ -171,13 +201,12 @@
         color: #fff;
         font-size: 26px;
         font-family: 'Font Awesome\ 5 Free';
-        content: '\f302';
+        content: '\f00e';
         pointer-events: none;
-        z-index: 9000;
+        z-index: 5;
         transition: 0.4s;
     }
-    
-    .card a.lightbox:after {
+    /*   .card a.lightbox:after {
         position: absolute;
         top: 0;
         left: 0;
@@ -187,7 +216,7 @@
         background-color: rgba(46, 132, 206, 0.7);
         content: '';
         transition: 0.4s;
-    }
+    }*/
     
     .card .lightbox:hover:after,
     .card .lightbox:hover:before {
