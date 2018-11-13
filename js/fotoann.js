@@ -96,13 +96,13 @@ function GetAlbum(link, pageNum) {
 }
 
 function GenerationIndex(album) {
+  document.getElementById('photo-gallery').setAttribute('style', 'display: none;');
   for (let i in album.photos) {
     let card = document.createElement('div');
     let link = document.createElement('a');
     let img = new Image();
 
     card.setAttribute('class', 'card animated flipInY');
-    card.setAttribute('style', 'display: none;');
 
     link.setAttribute('class', 'lightbox');
     link.setAttribute('href', album.photos[i].pic_max);
@@ -119,9 +119,10 @@ function GenerationIndex(album) {
 
     document.getElementById('photo-gallery').appendChild(card);
   }
-  //$('img.animated').on('load', function(elem) {
-  //  $(elem.delegateTarget.parentNode.parentNode).css('display', '');
-  //});
+  $('#photo-gallery img:last').on('load', function() {
+    $('#photo-gallery').removeAttr('style');
+  });
+
   $(document).on("click", '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox({
@@ -134,23 +135,28 @@ function GenerationIndex(album) {
 function GenerationPortfolio(album) {
   for (let i in album.photos) {
     let card = document.createElement('div');
+    let text = document.createElement('div');
     let link = document.createElement('a');
     let img = new Image();
     switch (parseInt(i)) {
       case 0:
-        card.setAttribute('class', 'card wedding');
+        card.setAttribute('class', 'card');
+        text.setAttribute('class', 'text');
         link.setAttribute('href', '/p-wedding');
         break;
       case 1:
-        card.setAttribute('class', 'card children');
+        card.setAttribute('class', 'card');
+        text.setAttribute('class', 'text');
         link.setAttribute('href', '/p-children');
         break;
       case 2:
-        card.setAttribute('class', 'card famaly');
+        card.setAttribute('class', 'card');
+        text.setAttribute('class', 'text');
         link.setAttribute('href', '/p-famaly');
         break;
       case 3:
-        card.setAttribute('class', 'card portret');
+        card.setAttribute('class', 'card');
+        text.setAttribute('class', 'text');
         link.setAttribute('href', '/p-portret');
         break;
       default:
@@ -161,6 +167,9 @@ function GenerationPortfolio(album) {
     img.alt = 'фотограф Анна +79132826264';
 
     link.appendChild(img);
+
+    text.innerHTML = album.photos[i].text;
+    card.appendChild(text);
 
     card.appendChild(link);
 
@@ -198,14 +207,16 @@ function GenerationPortfolioSubPage(album) {
   }
 }
 
+/*
 //-----------------------------------------------------
 //Анимация галереи на первой странице
 //-----------------------------------------------------
 $(window).on('load', function() {
   if (new RegExp("\/$|\/index").test(location.pathname)) {
-    $('div.card').css('display', '');
+    $('#photo-gallery').removeAttr('style');
   }
 });
+*/
 
 //-----------------------------------------------------
 //Анимация перехода по якорю
