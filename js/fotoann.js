@@ -9,7 +9,8 @@ function GetLink(pageNum) {
     portfolio_wedding: '863420833495',
     portfolio_famaly: '863420873943',
     portfolio_child: '863420911575',
-    portfolio_portret: '863420898775'
+    portfolio_portret: '863420898775',
+    photo_event: '880688066263'
   };
 
   switch (pageNum) {
@@ -31,8 +32,14 @@ function GetLink(pageNum) {
     case 24:
       album_id = page.portfolio_portret;
       break;
+    case 3:
+      // отзывы
+      break;
+    case 4:
+      album_id = page.photo_event;
+      break;
     default:
-      alert('Не удалось определить album_id');
+      console.log('Could not determine album_id');
   }
   if (album_id != undefined) {
     let sig = 'aid=' + album_id + 'application_key=CBAEGMAMEBABABABAcount=100fields=photo.pic240min,photo.pic_max,photo.textformat=jsonmethod=photos.getPhoto' + salt;
@@ -84,7 +91,7 @@ function GetAlbum(link, pageNum) {
           GenerationReviews(album);
           break;
         case 4:
-          GenerationEvents(album);
+          GenerationPhotoEvents(album);
           break;
         default:
           GenerationIndex(album);
@@ -204,6 +211,27 @@ function GenerationPortfolioSubPage(album) {
       card.setAttribute('class', 'card mb-3');
       document.getElementById('photo-gallery').appendChild(card);
     }
+  }
+}
+
+function GenerationPhotoEvents(album) {
+  for (let i in album.photos) {
+    let card = document.createElement('div');
+    let img = new Image();
+    let card_body = document.createElement('div');
+
+    img.src = album.photos[i].pic240min;
+    img.alt = 'фотограф Анна +79132826264';
+
+    card.appendChild(img);
+
+    card_body.setAttribute('class', 'card-body');
+    card_body.innerHTML = album.photos[i].text;
+
+    card.setAttribute('class', 'card');
+    card.appendChild(card_body);
+
+    document.getElementById('photo-event').appendChild(card);
   }
 }
 
