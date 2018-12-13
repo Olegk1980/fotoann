@@ -220,6 +220,7 @@ function GenerationPhotoEvents(album) {
     let img = new Image();
     let card_body = document.createElement('div');
 
+    img.setAttribute('class', 'mw-100');
     img.src = album.photos[i].pic240min;
     img.alt = 'фотограф Анна +79132826264';
 
