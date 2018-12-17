@@ -216,6 +216,7 @@ function GenerationPortfolioSubPage(album) {
 
 function GenerationPhotoEvents(album) {
   for (let i in album.photos) {
+    let div = document.createElement('div');
     let card = document.createElement('div');
     let img = new Image();
     let card_body = document.createElement('div');
@@ -229,10 +230,13 @@ function GenerationPhotoEvents(album) {
     card_body.setAttribute('class', 'card-body');
     card_body.innerHTML = album.photos[i].text;
 
-    card.setAttribute('class', 'card');
+    card.setAttribute('class', 'card mb-4');
     card.appendChild(card_body);
 
-    document.getElementById('photo-event').appendChild(card);
+    div.setAttribute('class', 'col-sm-6 col-md-4');
+    div.appendChild(card);
+
+    document.getElementById('photo-event').appendChild(div);
   }
 }
 
