@@ -109,7 +109,8 @@ function GenerationIndex(album) {
     let link = document.createElement('a');
     let img = new Image();
 
-    card.setAttribute('class', 'card animated flipInY');
+    //card.setAttribute('class', 'card animated flipInY');
+    card.setAttribute('class', 'card');
 
     link.setAttribute('class', 'lightbox');
     link.setAttribute('href', album.photos[i].pic_max);
