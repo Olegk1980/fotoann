@@ -156,7 +156,9 @@ function GenerationPortfolio(album) {
 }
 
 function GenerationPortfolioSubPage(album) {
-  //  let totalCount = album.totalCount - 2;
+  document.getElementById('photo-gallery').style.visibility='hidden';
+  let allImg = album.photos.length;
+  
   let numEvent = 4;
   let flag = false;
   let row;
@@ -166,6 +168,13 @@ function GenerationPortfolioSubPage(album) {
 
     img.src = album.photos[i].pic_max;
     img.alt = 'фотограф Анна +79132826264';
+    img.addEventListener('load', function() {
+      allImg--;
+      if(allImg == 0) {
+          hiddenPreloading();
+          document.getElementById('photo-gallery').style.visibility='visible';
+        }
+    });
 
     card.appendChild(img);
 
@@ -186,6 +195,7 @@ function GenerationPortfolioSubPage(album) {
 }
 
 function GenerationPhotoEvents(album) {
+  document.getElementById('photo-event').style.visibility='hidden';
   for (let i in album.photos) {
     let div = document.createElement('div');
     let card = document.createElement('div');
@@ -195,6 +205,13 @@ function GenerationPhotoEvents(album) {
     img.setAttribute('class', 'mw-100');
     img.src = album.photos[i].pic240min;
     img.alt = 'фотограф Анна +79132826264';
+    img.addEventListener('load', function() {
+      allImg--;
+      if(allImg == 0) {
+          hiddenPreloading();
+          document.getElementById('photo-event').style.visibility='visible';
+        }
+    });
 
     card.appendChild(img);
 
