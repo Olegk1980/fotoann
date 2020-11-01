@@ -196,6 +196,8 @@ function GenerationPortfolioSubPage(album) {
 
 function GenerationPhotoEvents(album) {
   document.getElementById('photo-event').style.visibility='hidden';
+  let allImg = album.photos.length;
+  
   for (let i in album.photos) {
     let div = document.createElement('div');
     let card = document.createElement('div');
