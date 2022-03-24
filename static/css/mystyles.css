@@ -92,15 +92,15 @@
 
     /* =Footer
 -------------------------------------- */    
-    footer .fa-vk {
+    footer .vk-ic {
         font-size: 1.33333em;
         color: #375474;
     }    
-    footer .fa-odnoklassniki-square {
+    footer .ok-ic {
         font-size: 1.33333em;
         color: #ee8208;
     }    
-    footer .fa-telegram {
+    footer .inst-ic {
         font-size: 1.33333em;
         background: -webkit-radial-gradient(30% 107%, circle, #FEDA77 10%, #F58529 25%, #DD2A7B 45%, #8134AF 60%, #515BD4 90%);
         /* Safari 5.1-6.0 */
@@ -113,16 +113,20 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-    }    
-    footer .fa-whatsapp-square {
+    }  
+    footer .telegram-ic {
         font-size: 1.33333em;
+        color: #0088cc;
+    }
+    footer .whatsapp-ic {
+        font-size: 1.39999em;
         color: #25d366;
     }    
-    footer .fa-viber {
+    footer .viber-ic {
         font-size: 1.33333em;
         color: #8f5db7;
     }    
-    footer .fa-phone-square {
+    footer .phone-ic {
         font-size: 1.33333em;
         color: #524d4d;
     }
