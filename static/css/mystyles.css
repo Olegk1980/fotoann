@@ -226,18 +226,11 @@ img {
         position: fixed;
         bottom: 0;
         right: 10px;
+        margin: 20px;
         z-index: 900;
-        opacity: 0;
     }
     
     div#go-top a {
-        display: block;
-        font-size: 4rem;
-        text-align: center;
-        -moz-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        -webkit-transition: all 0.2s ease-in-out;
-        -ms-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
     }
     
