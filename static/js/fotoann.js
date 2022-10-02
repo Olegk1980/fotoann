@@ -97,12 +97,10 @@ function GenerationIndex(album) {
     fullscreen: false,
     loop: false,
     rotatable: false,
-/*    ready() {
+    ready() {
       viewer.show(true);
-    }*/
+    }
   });
-
-  viewer.show();
 }
 
 function GenerationPortfolio(album) {
