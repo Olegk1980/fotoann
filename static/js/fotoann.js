@@ -76,8 +76,9 @@ function GenerationIndex(album) {
   const viewer = new Viewer(document.getElementById('photo-gallery'), {
     url: 'data-original',
     navbar: false,
-    title: 4,
-    toolbar: {
+    title: false,
+    toolbar: false,
+/*    toolbar: {
       zoomIn: false,
       zoomOut: false,
       oneToOne: false,
@@ -92,7 +93,7 @@ function GenerationIndex(album) {
       rotateRight: false,
       flipHorizontal: false,
       flipVertical:false,
-    },
+    },*/
     fullscreen: false,
     loop: false,
     rotatable: false,
