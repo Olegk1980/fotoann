@@ -16,6 +16,9 @@ function GetAlbum(link) {
         case '/':
           GenerationIndex(album);
           break;
+        case '/index_new':
+          GenerationIndex_new(album);
+            break;
         case '/portfolio':
           GenerationPortfolio(album);
           break;
@@ -55,10 +58,12 @@ function GenerationIndex(album) {
     let img = new Image();
 
     card.setAttribute('class', 'card shadow p-3 mb-3 bg-white rounded');
+    card.setAttribute('data-fancybox', 'gallery');
+    card.setAttribute('data-caption', 'фотограф Анна +79132826264');
+    card.setAttribute('data-src', album.photos[i].pic_max);
 
     img.src = album.photos[i].pic240min;
-    img.setAttribute('loading', 'lazy');
-    img.setAttribute('data-original', album.photos[i].pic_max);
+    img.setAttribute('loading', 'lazy');    
     img.alt = 'фотограф Анна +79132826264';
     img.addEventListener('load', function() {
       allImg--;
@@ -68,39 +73,23 @@ function GenerationIndex(album) {
           document.getElementById('photo-gallery').style.visibility='visible';
         }
     });
-
     card.appendChild(img);
     document.getElementById('photo-gallery').appendChild(card);
   }
 
-  const viewer = new Viewer(document.getElementById('photo-gallery'), {
-    url: 'data-original',
-    navbar: false,
-    title: false,
-    toolbar: false,
-/*    toolbar: {
-      zoomIn: false,
-      zoomOut: false,
-      oneToOne: false,
-      reset: false,
-      prev: 4,
-      play: {
-        show: 4,
-        size: 'large',
-      },
-      next: 4,
-      rotateLeft: false,
-      rotateRight: false,
-      flipHorizontal: false,
-      flipVertical:false,
-    },*/
-    fullscreen: false,
-    loop: false,
-    rotatable: false,
-    ready() {
-      viewer.show(true);
-    }
-  });
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    animated: false,
+    showClass: false,
+    hideClass: false,  
+    click: false,  
+    dragToClose: false,  
+    Image: {
+      zoom: false,
+    },  
+    Toolbar: {
+      display: [false, "close"],
+    },});
+
 }
 
 function GenerationPortfolio(album) {
@@ -261,6 +250,9 @@ function hiddenPreloading() {
     case '/index':
         album_id = page.index;
     break;
+    case '/index_new':
+      album_id = page.index;
+    break;
     case '/portfolio':
       album_id = page.portfolio;
       break;
@@ -310,7 +302,6 @@ function hiddenPreloading() {
 //-----------------------------------------------------
 // Обработчик события ссылок страницы
 //-----------------------------------------------------
-
 
 
 //-----------------------------------------------------
